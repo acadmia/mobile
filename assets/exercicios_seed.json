@@ -1,0 +1,590 @@
+[
+  {
+    "id": 1,
+    "nome": "Cross-Over",
+    "grupo_muscular": "Peitoral",
+    "is_custom": false
+  },
+  {
+    "id": 2,
+    "nome": "Crucifixo Fly 45º",
+    "grupo_muscular": "Peitoral",
+    "is_custom": false
+  },
+  {
+    "id": 3,
+    "nome": "Crucifixo Fly",
+    "grupo_muscular": "Peitoral",
+    "is_custom": false
+  },
+  {
+    "id": 4,
+    "nome": "Supino Articulado 45º",
+    "grupo_muscular": "Peitoral",
+    "is_custom": false
+  },
+  {
+    "id": 5,
+    "nome": "Supino Barra",
+    "grupo_muscular": "Peitoral",
+    "is_custom": false
+  },
+  {
+    "id": 6,
+    "nome": "Supino Barra 45º",
+    "grupo_muscular": "Peitoral",
+    "is_custom": false
+  },
+  {
+    "id": 7,
+    "nome": "Sup. Art. Declinado",
+    "grupo_muscular": "Peitoral",
+    "is_custom": false
+  },
+  {
+    "id": 8,
+    "nome": "Supino c/ Halteres 45º",
+    "grupo_muscular": "Peitoral",
+    "is_custom": false
+  },
+  {
+    "id": 9,
+    "nome": "Supino com Halteres",
+    "grupo_muscular": "Peitoral",
+    "is_custom": false
+  },
+  {
+    "id": 10,
+    "nome": "Supino Declinado",
+    "grupo_muscular": "Peitoral",
+    "is_custom": false
+  },
+  {
+    "id": 11,
+    "nome": "Voador",
+    "grupo_muscular": "Peitoral",
+    "is_custom": false
+  },
+  {
+    "id": 12,
+    "nome": "Voador Aberto",
+    "grupo_muscular": "Peitoral",
+    "is_custom": false
+  },
+  {
+    "id": 13,
+    "nome": "Pullover",
+    "grupo_muscular": "Peitoral",
+    "is_custom": false
+  },
+  {
+    "id": 14,
+    "nome": "Paralela",
+    "grupo_muscular": "Peitoral",
+    "is_custom": false
+  },
+  {
+    "id": 15,
+    "nome": "Apoio Solo",
+    "grupo_muscular": "Peitoral",
+    "is_custom": false
+  },
+  {
+    "id": 16,
+    "nome": "Remada Curvada",
+    "grupo_muscular": "Costas",
+    "is_custom": false
+  },
+  {
+    "id": 17,
+    "nome": "Remada Baixa",
+    "grupo_muscular": "Costas",
+    "is_custom": false
+  },
+  {
+    "id": 18,
+    "nome": "Remada Unilateral",
+    "grupo_muscular": "Costas",
+    "is_custom": false
+  },
+  {
+    "id": 19,
+    "nome": "Remada Alta",
+    "grupo_muscular": "Costas",
+    "is_custom": false
+  },
+  {
+    "id": 20,
+    "nome": "Remada Cavalinho",
+    "grupo_muscular": "Costas",
+    "is_custom": false
+  },
+  {
+    "id": 21,
+    "nome": "Crucifixo Posterior",
+    "grupo_muscular": "Costas",
+    "is_custom": false
+  },
+  {
+    "id": 22,
+    "nome": "Puxador Inverso",
+    "grupo_muscular": "Costas",
+    "is_custom": false
+  },
+  {
+    "id": 23,
+    "nome": "Puxador Frente",
+    "grupo_muscular": "Costas",
+    "is_custom": false
+  },
+  {
+    "id": 24,
+    "nome": "Puxador Articulado",
+    "grupo_muscular": "Costas",
+    "is_custom": false
+  },
+  {
+    "id": 25,
+    "nome": "Pulldown",
+    "grupo_muscular": "Costas",
+    "is_custom": false
+  },
+  {
+    "id": 26,
+    "nome": "Remada Máquina",
+    "grupo_muscular": "Costas",
+    "is_custom": false
+  },
+  {
+    "id": 27,
+    "nome": "Barra Fixa Graviton",
+    "grupo_muscular": "Costas",
+    "is_custom": false
+  },
+  {
+    "id": 28,
+    "nome": "Barra Fixa",
+    "grupo_muscular": "Costas",
+    "is_custom": false
+  },
+  {
+    "id": 29,
+    "nome": "Elevação Anterior",
+    "grupo_muscular": "Ombro",
+    "is_custom": false
+  },
+  {
+    "id": 30,
+    "nome": "Elevação Lateral",
+    "grupo_muscular": "Ombro",
+    "is_custom": false
+  },
+  {
+    "id": 31,
+    "nome": "Desenvolvimento Halteres",
+    "grupo_muscular": "Ombro",
+    "is_custom": false
+  },
+  {
+    "id": 32,
+    "nome": "Desenvolvimento Barra",
+    "grupo_muscular": "Ombro",
+    "is_custom": false
+  },
+  {
+    "id": 33,
+    "nome": "Desenvolvimento Máq.",
+    "grupo_muscular": "Ombro",
+    "is_custom": false
+  },
+  {
+    "id": 34,
+    "nome": "Desen. Art. Rotação",
+    "grupo_muscular": "Ombro",
+    "is_custom": false
+  },
+  {
+    "id": 35,
+    "nome": "Crucifixo Posterior",
+    "grupo_muscular": "Ombro",
+    "is_custom": false
+  },
+  {
+    "id": 36,
+    "nome": "Elevação de Ombro",
+    "grupo_muscular": "Trapézio",
+    "is_custom": false
+  },
+  {
+    "id": 37,
+    "nome": "Remada Vertical",
+    "grupo_muscular": "Trapézio",
+    "is_custom": false
+  },
+  {
+    "id": 38,
+    "nome": "Rosca Direta",
+    "grupo_muscular": "Bíceps",
+    "is_custom": false
+  },
+  {
+    "id": 39,
+    "nome": "Rosca Alternada",
+    "grupo_muscular": "Bíceps",
+    "is_custom": false
+  },
+  {
+    "id": 40,
+    "nome": "Rosca Barra W",
+    "grupo_muscular": "Bíceps",
+    "is_custom": false
+  },
+  {
+    "id": 41,
+    "nome": "Rosca Concentrada",
+    "grupo_muscular": "Bíceps",
+    "is_custom": false
+  },
+  {
+    "id": 42,
+    "nome": "Rosca Concentrada Máq.",
+    "grupo_muscular": "Bíceps",
+    "is_custom": false
+  },
+  {
+    "id": 43,
+    "nome": "Rosca Scott",
+    "grupo_muscular": "Bíceps",
+    "is_custom": false
+  },
+  {
+    "id": 44,
+    "nome": "Rosca na Polia",
+    "grupo_muscular": "Bíceps",
+    "is_custom": false
+  },
+  {
+    "id": 45,
+    "nome": "Rosca Inversa",
+    "grupo_muscular": "Bíceps",
+    "is_custom": false
+  },
+  {
+    "id": 46,
+    "nome": "Rosca Martelo",
+    "grupo_muscular": "Bíceps",
+    "is_custom": false
+  },
+  {
+    "id": 47,
+    "nome": "Rosca Barra H",
+    "grupo_muscular": "Bíceps",
+    "is_custom": false
+  },
+  {
+    "id": 48,
+    "nome": "Rosca 21",
+    "grupo_muscular": "Bíceps",
+    "is_custom": false
+  },
+  {
+    "id": 49,
+    "nome": "Rosca Inclinada",
+    "grupo_muscular": "Bíceps",
+    "is_custom": false
+  },
+  {
+    "id": 50,
+    "nome": "Tríceps Polia",
+    "grupo_muscular": "Tríceps",
+    "is_custom": false
+  },
+  {
+    "id": 51,
+    "nome": "Tríceps Testa",
+    "grupo_muscular": "Tríceps",
+    "is_custom": false
+  },
+  {
+    "id": 52,
+    "nome": "Tríceps Patada",
+    "grupo_muscular": "Tríceps",
+    "is_custom": false
+  },
+  {
+    "id": 53,
+    "nome": "Tríceps Francês",
+    "grupo_muscular": "Tríceps",
+    "is_custom": false
+  },
+  {
+    "id": 54,
+    "nome": "Tríceps Apoio Banco",
+    "grupo_muscular": "Tríceps",
+    "is_custom": false
+  },
+  {
+    "id": 55,
+    "nome": "Tríceps Corda",
+    "grupo_muscular": "Tríceps",
+    "is_custom": false
+  },
+  {
+    "id": 56,
+    "nome": "Tríceps na Paralela",
+    "grupo_muscular": "Tríceps",
+    "is_custom": false
+  },
+  {
+    "id": 57,
+    "nome": "Tríceps Graviton",
+    "grupo_muscular": "Tríceps",
+    "is_custom": false
+  },
+  {
+    "id": 58,
+    "nome": "Tríceps Inverso",
+    "grupo_muscular": "Tríceps",
+    "is_custom": false
+  },
+  {
+    "id": 59,
+    "nome": "Supino Fechado",
+    "grupo_muscular": "Tríceps",
+    "is_custom": false
+  },
+  {
+    "id": 60,
+    "nome": "Elevação Pélvica",
+    "grupo_muscular": "Glúteos",
+    "is_custom": false
+  },
+  {
+    "id": 61,
+    "nome": "Abdutor Máquina",
+    "grupo_muscular": "Glúteos",
+    "is_custom": false
+  },
+  {
+    "id": 62,
+    "nome": "Afundo",
+    "grupo_muscular": "Glúteos",
+    "is_custom": false
+  },
+  {
+    "id": 63,
+    "nome": "Caneleira",
+    "grupo_muscular": "Glúteos",
+    "is_custom": false
+  },
+  {
+    "id": 64,
+    "nome": "Extensão Quadril",
+    "grupo_muscular": "Glúteos",
+    "is_custom": false
+  },
+  {
+    "id": 65,
+    "nome": "Leg Press 90º",
+    "grupo_muscular": "Isquiotibiais",
+    "is_custom": false
+  },
+  {
+    "id": 66,
+    "nome": "Flexão Pernas Unilateral",
+    "grupo_muscular": "Isquiotibiais",
+    "is_custom": false
+  },
+  {
+    "id": 67,
+    "nome": "Flexão Pernas",
+    "grupo_muscular": "Isquiotibiais",
+    "is_custom": false
+  },
+  {
+    "id": 68,
+    "nome": "Flexora Sentada",
+    "grupo_muscular": "Isquiotibiais",
+    "is_custom": false
+  },
+  {
+    "id": 69,
+    "nome": "Flexão Nórdica",
+    "grupo_muscular": "Isquiotibiais",
+    "is_custom": false
+  },
+  {
+    "id": 70,
+    "nome": "Stiff",
+    "grupo_muscular": "Isquiotibiais",
+    "is_custom": false
+  },
+  {
+    "id": 71,
+    "nome": "Agachamento Terra",
+    "grupo_muscular": "Isquiotibiais",
+    "is_custom": false
+  },
+  {
+    "id": 72,
+    "nome": "Agachamento Hack",
+    "grupo_muscular": "Quadríceps",
+    "is_custom": false
+  },
+  {
+    "id": 73,
+    "nome": "Agach. Barra Guiada",
+    "grupo_muscular": "Quadríceps",
+    "is_custom": false
+  },
+  {
+    "id": 74,
+    "nome": "Agachamento Livre",
+    "grupo_muscular": "Quadríceps",
+    "is_custom": false
+  },
+  {
+    "id": 75,
+    "nome": "Agachamento Bola",
+    "grupo_muscular": "Quadríceps",
+    "is_custom": false
+  },
+  {
+    "id": 76,
+    "nome": "Adutor Coxa Máquina",
+    "grupo_muscular": "Quadríceps",
+    "is_custom": false
+  },
+  {
+    "id": 77,
+    "nome": "Leg Press 45º",
+    "grupo_muscular": "Quadríceps",
+    "is_custom": false
+  },
+  {
+    "id": 78,
+    "nome": "Extensão Pernas",
+    "grupo_muscular": "Quadríceps",
+    "is_custom": false
+  },
+  {
+    "id": 79,
+    "nome": "Flexão Quadril",
+    "grupo_muscular": "Quadríceps",
+    "is_custom": false
+  },
+  {
+    "id": 80,
+    "nome": "Sissy",
+    "grupo_muscular": "Quadríceps",
+    "is_custom": false
+  },
+  {
+    "id": 81,
+    "nome": "Extensão Unilateral",
+    "grupo_muscular": "Quadríceps",
+    "is_custom": false
+  },
+  {
+    "id": 82,
+    "nome": "Gêmeos Máquina",
+    "grupo_muscular": "Panturrilha",
+    "is_custom": false
+  },
+  {
+    "id": 83,
+    "nome": "Gêmeos na Plataforma",
+    "grupo_muscular": "Panturrilha",
+    "is_custom": false
+  },
+  {
+    "id": 84,
+    "nome": "Gêmeos Barra Guiada",
+    "grupo_muscular": "Panturrilha",
+    "is_custom": false
+  },
+  {
+    "id": 85,
+    "nome": "Gêmeos Leg Press",
+    "grupo_muscular": "Panturrilha",
+    "is_custom": false
+  },
+  {
+    "id": 86,
+    "nome": "Abdominal Reto",
+    "grupo_muscular": "Abdômen",
+    "is_custom": false
+  },
+  {
+    "id": 87,
+    "nome": "Abdominal Declinado",
+    "grupo_muscular": "Abdômen",
+    "is_custom": false
+  },
+  {
+    "id": 88,
+    "nome": "Abdominal Lateral",
+    "grupo_muscular": "Abdômen",
+    "is_custom": false
+  },
+  {
+    "id": 89,
+    "nome": "Abdominal Bicicleta",
+    "grupo_muscular": "Abdômen",
+    "is_custom": false
+  },
+  {
+    "id": 90,
+    "nome": "Abdominal Militar",
+    "grupo_muscular": "Abdômen",
+    "is_custom": false
+  },
+  {
+    "id": 91,
+    "nome": "Abdominal Oblíquo",
+    "grupo_muscular": "Abdômen",
+    "is_custom": false
+  },
+  {
+    "id": 92,
+    "nome": "Abdominal Infra",
+    "grupo_muscular": "Abdômen",
+    "is_custom": false
+  },
+  {
+    "id": 93,
+    "nome": "Abdominal Bola",
+    "grupo_muscular": "Abdômen",
+    "is_custom": false
+  },
+  {
+    "id": 94,
+    "nome": "Abdominal Paralela",
+    "grupo_muscular": "Abdômen",
+    "is_custom": false
+  },
+  {
+    "id": 95,
+    "nome": "Abdominal Pulley",
+    "grupo_muscular": "Abdômen",
+    "is_custom": false
+  },
+  {
+    "id": 96,
+    "nome": "Abdominal Rodinha",
+    "grupo_muscular": "Abdômen",
+    "is_custom": false
+  },
+  {
+    "id": 97,
+    "nome": "Abdominal Máquina",
+    "grupo_muscular": "Abdômen",
+    "is_custom": false
+  },
+  {
+    "id": 98,
+    "nome": "Prancha",
+    "grupo_muscular": "Abdômen",
+    "is_custom": false
+  }
+]
