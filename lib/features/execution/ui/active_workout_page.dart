@@ -23,10 +23,12 @@ class ActiveWorkoutPage extends StatefulWidget {
 class _ActiveWorkoutPageState extends State<ActiveWorkoutPage> {
   late final ActiveWorkoutStore _workoutStore;
   late final TimerStore _timerStore;
+  late final DateTime _startTime;
 
   @override
   void initState() {
     super.initState();
+    _startTime = DateTime.now();
     final repository = WorkoutRepository(DatabaseHelper());
     _workoutStore = ActiveWorkoutStore(repository);
     _timerStore = TimerStore();
@@ -122,7 +124,8 @@ class _ActiveWorkoutPageState extends State<ActiveWorkoutPage> {
                   BordoButton(
                     label: 'FINALIZAR',
                     onPressed: () {
-                      context.pop();
+                      final duration = DateTime.now().difference(_startTime).inSeconds;
+                      context.pushReplacement('/summary', extra: duration);
                     },
                   ),
                 ],
