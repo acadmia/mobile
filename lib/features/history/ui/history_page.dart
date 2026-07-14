@@ -1,3 +1,4 @@
+import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -34,6 +35,13 @@ class _HistoryPageState extends State<HistoryPage> {
 
   bool _isSameDate(DateTime a, DateTime b) {
     return a.year == b.year && a.month == b.month && a.day == b.day;
+  }
+
+  bool _isPastDay(DateTime day) {
+    final now = DateTime.now();
+    final today = DateTime(now.year, now.month, now.day);
+    final target = DateTime(day.year, day.month, day.day);
+    return target.isBefore(today);
   }
 
   List<HistorySessionModel> _getEventsForDay(DateTime day, List<HistorySessionModel> allSessions) {
@@ -104,8 +112,29 @@ class _HistoryPageState extends State<HistoryPage> {
                         const SizedBox(height: 16),
                         Expanded(
                           child: selectedSessions.isEmpty
-                              ? const Center(
-                                  child: Text('Nenhum treino neste dia.', style: BordoTypography.bodySecondary),
+                              ? Center(
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      const Text('Nenhum treino neste dia.', style: BordoTypography.bodySecondary),
+                                      if (_selectedDay != null && _isPastDay(_selectedDay!)) ...[
+                                        const SizedBox(height: 24),
+                                        ElevatedButton.icon(
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor: BordoColors.accent,
+                                            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                                          ),
+                                          icon: const Icon(Icons.history, color: Colors.white),
+                                          label: const Text('Registrar Treino Passado', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16)),
+                                          onPressed: () async {
+                                            await context.push('/past-workout-selector', extra: _selectedDay);
+                                            store.loadHistory();
+                                          },
+                                        )
+                                      ]
+                                    ],
+                                  ),
                                 )
                               : ListView.builder(
                                   itemCount: selectedSessions.length,
