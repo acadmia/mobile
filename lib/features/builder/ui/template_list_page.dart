@@ -71,7 +71,7 @@ class _TemplateListPageState extends State<TemplateListPage> {
                             subtitle: Text('${template.exercises.length} exercícios', style: BordoTypography.bodySecondary),
                             trailing: const Icon(Icons.play_arrow, color: BordoColors.accent),
                             onTap: () {
-                              // Link para a Sprint 3
+                              context.push('/workout', extra: template);
                             },
                           ),
                         );
