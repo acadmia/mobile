@@ -7,6 +7,8 @@ import 'features/catalog/ui/catalog_selector_page.dart';
 import 'features/builder/ui/template_list_page.dart';
 import 'features/builder/ui/template_builder_page.dart';
 import 'features/execution/ui/active_workout_page.dart';
+import 'features/analytics/ui/user_profile_page.dart';
+import 'features/analytics/ui/workout_summary_page.dart';
 import 'shared/models/template_model.dart';
 
 void main() {
@@ -41,6 +43,17 @@ final _router = GoRouter(
       builder: (context, state) {
         final template = state.extra as TemplateModel;
         return ActiveWorkoutPage(template: template);
+      },
+    ),
+    GoRoute(
+      path: '/profile',
+      builder: (context, state) => const UserProfilePage(),
+    ),
+    GoRoute(
+      path: '/summary',
+      builder: (context, state) {
+        final duration = state.extra as int;
+        return WorkoutSummaryPage(durationSeconds: duration);
       },
     ),
   ],

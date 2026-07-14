@@ -39,9 +39,17 @@ class _TemplateListPageState extends State<TemplateListPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Text('Meus Treinos', style: BordoTypography.header),
-                  IconButton(
-                    icon: const Icon(Icons.add, color: BordoColors.accent),
-                    onPressed: () => context.push('/builder').then((_) => store.loadTemplates()),
+                  Row(
+                    children: [
+                      IconButton(
+                        icon: const Icon(Icons.person, color: BordoColors.textSecondary),
+                        onPressed: () => context.push('/profile'),
+                      ),
+                      IconButton(
+                        icon: const Icon(Icons.add, color: BordoColors.accent),
+                        onPressed: () => context.push('/builder').then((_) => store.loadTemplates()),
+                      ),
+                    ],
                   ),
                 ],
               ),

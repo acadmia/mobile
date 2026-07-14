@@ -80,6 +80,17 @@ class DatabaseHelper {
         FOREIGN KEY (exercise_id) REFERENCES exercises (id) ON DELETE CASCADE
       )
     ''');
+
+    await db.execute('''
+      CREATE TABLE user_profile (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        age INTEGER NOT NULL,
+        weight REAL NOT NULL,
+        height REAL NOT NULL,
+        gender TEXT NOT NULL,
+        heart_rate REAL NOT NULL
+      )
+    ''');
     
     await _seedDatabase(db);
   }
