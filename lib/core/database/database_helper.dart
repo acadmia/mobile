@@ -24,7 +24,6 @@ class DatabaseHelper {
     return await openDatabase(
       path,
       version: 1,
-      // Habilita as Chaves Estrangeiras (Foreign Keys) para exclusão em cascata
       onConfigure: (db) async => await db.execute('PRAGMA foreign_keys = ON'),
       onCreate: _onCreate,
     );
@@ -54,6 +53,30 @@ class DatabaseHelper {
         exercise_id INTEGER NOT NULL,
         sort_order INTEGER NOT NULL,
         FOREIGN KEY (template_id) REFERENCES workout_templates (id) ON DELETE CASCADE,
+        FOREIGN KEY (exercise_id) REFERENCES exercises (id) ON DELETE CASCADE
+      )
+    ''');
+
+    await db.execute('''
+      CREATE TABLE workout_sessions (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        template_id INTEGER,
+        start_time TEXT NOT NULL,
+        end_time TEXT,
+        total_volume REAL DEFAULT 0.0,
+        FOREIGN KEY (template_id) REFERENCES workout_templates (id) ON DELETE SET NULL
+      )
+    ''');
+
+    await db.execute('''
+      CREATE TABLE workout_sets (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        session_id INTEGER NOT NULL,
+        exercise_id INTEGER NOT NULL,
+        weight REAL NOT NULL,
+        reps INTEGER NOT NULL,
+        completed_at TEXT NOT NULL,
+        FOREIGN KEY (session_id) REFERENCES workout_sessions (id) ON DELETE CASCADE,
         FOREIGN KEY (exercise_id) REFERENCES exercises (id) ON DELETE CASCADE
       )
     ''');

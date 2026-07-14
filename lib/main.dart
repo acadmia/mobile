@@ -6,6 +6,8 @@ import 'features/catalog/ui/new_exercise_page.dart';
 import 'features/catalog/ui/catalog_selector_page.dart';
 import 'features/builder/ui/template_list_page.dart';
 import 'features/builder/ui/template_builder_page.dart';
+import 'features/execution/ui/active_workout_page.dart';
+import 'shared/models/template_model.dart';
 
 void main() {
   runApp(const GymApp());
@@ -33,6 +35,13 @@ final _router = GoRouter(
     GoRoute(
       path: '/builder',
       builder: (context, state) => const TemplateBuilderPage(),
+    ),
+    GoRoute(
+      path: '/workout',
+      builder: (context, state) {
+        final template = state.extra as TemplateModel;
+        return ActiveWorkoutPage(template: template);
+      },
     ),
   ],
 );
