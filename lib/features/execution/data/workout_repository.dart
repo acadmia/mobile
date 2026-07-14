@@ -8,11 +8,11 @@ class WorkoutRepository {
 
   WorkoutRepository(this._dbHelper);
 
-  Future<int> startSession(int? templateId) async {
+  Future<int> startSession(int? templateId, {DateTime? customStartTime}) async {
     final db = await _dbHelper.database;
     final session = WorkoutSessionModel(
       templateId: templateId,
-      startTime: DateTime.now(),
+      startTime: customStartTime ?? DateTime.now(),
     );
     return await db.insert('workout_sessions', session.toMap());
   }

@@ -11,6 +11,8 @@ import 'features/execution/ui/active_workout_page.dart';
 import 'features/analytics/ui/user_profile_page.dart';
 import 'features/analytics/ui/workout_summary_page.dart';
 import 'features/history/ui/history_page.dart';
+import 'features/history/ui/past_template_selector_page.dart';
+import 'features/history/ui/past_workout_page.dart';
 import 'shared/models/template_model.dart';
 
 void main() {
@@ -82,6 +84,20 @@ final _router = GoRouter(
       builder: (context, state) {
         final duration = state.extra as int;
         return WorkoutSummaryPage(durationSeconds: duration);
+      },
+    ),
+    GoRoute(
+      path: '/past-workout-selector',
+      builder: (context, state) {
+        final date = state.extra as DateTime;
+        return PastTemplateSelectorPage(selectedDate: date);
+      },
+    ),
+    GoRoute(
+      path: '/past-workout',
+      builder: (context, state) {
+        final map = state.extra as Map<String, dynamic>;
+        return PastWorkoutPage(template: map['template'] as TemplateModel, date: map['date'] as DateTime);
       },
     ),
   ],
