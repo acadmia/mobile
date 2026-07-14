@@ -1,17 +1,28 @@
 import 'package:flutter_triple/flutter_triple.dart';
 import '../../../shared/models/workout_set_model.dart';
+import '../../../shared/models/template_model.dart';
 import '../data/workout_repository.dart';
 
 class ActiveWorkoutState {
   final int? sessionId;
   final List<WorkoutSetModel> completedSets;
+  final Map<int, WorkoutSetModel> lastPerformances;
 
-  ActiveWorkoutState({this.sessionId, this.completedSets = const []});
+  ActiveWorkoutState({
+    this.sessionId, 
+    this.completedSets = const [],
+    this.lastPerformances = const {},
+  });
 
-  ActiveWorkoutState copyWith({int? sessionId, List<WorkoutSetModel>? completedSets}) {
+  ActiveWorkoutState copyWith({
+    int? sessionId, 
+    List<WorkoutSetModel>? completedSets,
+    Map<int, WorkoutSetModel>? lastPerformances,
+  }) {
     return ActiveWorkoutState(
       sessionId: sessionId ?? this.sessionId,
       completedSets: completedSets ?? this.completedSets,
+      lastPerformances: lastPerformances ?? this.lastPerformances,
     );
   }
 }
@@ -21,11 +32,20 @@ class ActiveWorkoutStore extends Store<ActiveWorkoutState> {
 
   ActiveWorkoutStore(this._repository) : super(ActiveWorkoutState());
 
-  Future<void> startWorkout(int? templateId) async {
+  Future<void> startWorkout(TemplateModel template) async {
     setLoading(true);
     try {
-      final sessionId = await _repository.startSession(templateId);
-      update(state.copyWith(sessionId: sessionId));
+      final sessionId = await _repository.startSession(template.id);
+      
+      final Map<int, WorkoutSetModel> perfs = {};
+      for (var ex in template.exercises) {
+        if (ex.id != null) {
+          final p = await _repository.getLastPerformanceForExercise(ex.id!);
+          if (p != null) perfs[ex.id!] = p;
+        }
+      }
+      
+      update(state.copyWith(sessionId: sessionId, lastPerformances: perfs));
     } catch (e) {
       setError(e);
     } finally {
