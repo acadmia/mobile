@@ -19,7 +19,7 @@ class DatabaseHelper {
 
   Future<Database> _initDatabase() async {
     final dbPath = await getDatabasesPath();
-    final path = join(dbPath, 'bordo_gym.db');
+    final path = join(dbPath, 'bordo_gym_v3.db');
 
     return await openDatabase(
       path,
@@ -104,7 +104,7 @@ class DatabaseHelper {
       for (var item in jsonList) {
         batch.insert('exercises', {
           'name': item['nome'] ?? item['name'] ?? 'Exercício Desconhecido',
-          'muscle_group': item['grupoMuscular'] ?? item['muscleGroup'] ?? item['muscle_group'] ?? 'Geral',
+          'muscle_group': item['grupo_muscular'] ?? item['grupoMuscular'] ?? item['muscleGroup'] ?? 'Geral',
           'is_custom': 0,
         });
       }

@@ -33,4 +33,10 @@ class CatalogRepository {
     final db = await _dbHelper.database;
     return await db.insert('exercises', exercise.toMap());
   }
+
+  Future<List<String>> getDistinctMuscleGroups() async {
+    final db = await _dbHelper.database;
+    final List<Map<String, dynamic>> maps = await db.rawQuery('SELECT DISTINCT muscle_group FROM exercises ORDER BY muscle_group ASC');
+    return maps.map((map) => map['muscle_group'] as String).toList();
+  }
 }

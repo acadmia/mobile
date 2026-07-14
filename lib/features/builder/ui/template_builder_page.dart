@@ -36,8 +36,12 @@ class _TemplateBuilderPageState extends State<TemplateBuilderPage> {
   }
 
   Future<void> _saveTemplate() async {
-    if (_nameController.text.trim().isEmpty || store.state.isEmpty) return;
-    await store.saveTemplate(_nameController.text);
+    if (store.state.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Adicione pelo menos um exercício.')));
+      return;
+    }
+    final name = _nameController.text.trim().isEmpty ? 'Treino Livre' : _nameController.text.trim();
+    await store.saveTemplate(name);
     if (mounted) context.pop();
   }
 
