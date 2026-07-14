@@ -60,10 +60,38 @@ class _CatalogPageState extends State<CatalogPage> {
                     if (state.isEmpty) {
                       return const Center(child: Text('Nenhum exercício encontrado', style: BordoTypography.bodySecondary));
                     }
+                    
+                    final sortedState = List<ExerciseModel>.from(state)..sort((a, b) => a.name.compareTo(b.name));
+                    
+                    final Map<String, List<ExerciseModel>> grouped = {};
+                    for (var ex in sortedState) {
+                      if (!grouped.containsKey(ex.muscleGroup)) {
+                        grouped[ex.muscleGroup] = [];
+                      }
+                      grouped[ex.muscleGroup]!.add(ex);
+                    }
+                    
+                    final sortedKeys = grouped.keys.toList()..sort();
+                    
+                    final List<dynamic> flattened = [];
+                    for (var key in sortedKeys) {
+                      flattened.add(key); // Header
+                      flattened.addAll(grouped[key]!); // Items
+                    }
+
                     return ListView.builder(
-                      itemCount: state.length,
+                      itemCount: flattened.length,
                       itemBuilder: (context, index) {
-                        final exercise = state[index];
+                        final item = flattened[index];
+                        
+                        if (item is String) {
+                          return Padding(
+                            padding: const EdgeInsets.only(top: 24, bottom: 12),
+                            child: Text(item.toUpperCase(), style: BordoTypography.title.copyWith(color: BordoColors.accent, fontSize: 16, letterSpacing: 2)),
+                          );
+                        }
+                        
+                        final exercise = item as ExerciseModel;
                         return Card(
                           color: BordoColors.surface,
                           margin: const EdgeInsets.only(bottom: 8),
@@ -73,7 +101,6 @@ class _CatalogPageState extends State<CatalogPage> {
                           ),
                           child: ListTile(
                             title: Text(exercise.name, style: BordoTypography.title.copyWith(fontSize: 18)),
-                            subtitle: Text(exercise.muscleGroup, style: BordoTypography.bodySecondary),
                             trailing: exercise.isCustom 
                                 ? const Icon(Icons.star, color: BordoColors.accent, size: 16) 
                                 : null,

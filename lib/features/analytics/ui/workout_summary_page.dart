@@ -80,7 +80,7 @@ class _WorkoutSummaryPageState extends State<WorkoutSummaryPage> {
               const SizedBox(height: 24),
               const Text('Treino Finalizado!', style: BordoTypography.header),
               const SizedBox(height: 8),
-              Text('Duração: \$min minutos', style: BordoTypography.bodySecondary),
+              Text('Duração: $min minutos', style: BordoTypography.bodySecondary),
               const SizedBox(height: 48),
               if (_profile == null)
                 const Text(
@@ -89,7 +89,7 @@ class _WorkoutSummaryPageState extends State<WorkoutSummaryPage> {
                   textAlign: TextAlign.center,
                 )
               else ...[
-                _buildStatCard('Gasto Calórico Estimado', '\${calories.toStringAsFixed(0)} kcal'),
+                _buildStatCard('Gasto Calórico Estimado', '${calories.toStringAsFixed(0)} kcal'),
                 const SizedBox(height: 16),
                 _buildStatCard('Zona de Treinamento', zone),
               ],
