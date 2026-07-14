@@ -5,11 +5,13 @@ import '../typography.dart';
 class BruteInput extends StatelessWidget {
   final TextEditingController controller;
   final String label;
+  final bool readOnly;
 
   const BruteInput({
     super.key,
     required this.controller,
     required this.label,
+    this.readOnly = false,
   });
 
   @override
@@ -23,6 +25,7 @@ class BruteInput extends StatelessWidget {
       ),
       child: TextField(
         controller: controller,
+        readOnly: readOnly,
         keyboardType: TextInputType.number,
         textAlign: TextAlign.center,
         style: BordoTypography.inputBig.copyWith(fontSize: 24),

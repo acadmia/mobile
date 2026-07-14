@@ -33,7 +33,7 @@ class _ActiveWorkoutPageState extends State<ActiveWorkoutPage> {
     _workoutStore = ActiveWorkoutStore(repository);
     _timerStore = TimerStore();
     
-    _workoutStore.startWorkout(widget.template.id);
+    _workoutStore.startWorkout(widget.template);
   }
 
   @override
@@ -74,24 +74,33 @@ class _ActiveWorkoutPageState extends State<ActiveWorkoutPage> {
               ),
             ),
             Expanded(
-              child: ListView.builder(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                itemCount: widget.template.exercises.length,
-                itemBuilder: (context, index) {
-                  final exercise = widget.template.exercises[index];
-                  return ExerciseExecutionCard(
-                    exerciseName: exercise.name,
-                    onSetCompleted: (weight, reps) {
-                      _workoutStore.registerSet(
-                        exerciseId: exercise.id!,
-                        weight: weight,
-                        reps: reps,
+              child: ScopedBuilder<ActiveWorkoutStore, ActiveWorkoutState>(
+                store: _workoutStore,
+                onLoading: (_) => const Center(child: CircularProgressIndicator(color: BordoColors.accent)),
+                onState: (_, state) {
+                  return ListView.builder(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    itemCount: widget.template.exercises.length,
+                    itemBuilder: (context, index) {
+                      final exercise = widget.template.exercises[index];
+                      final lastPerf = state.lastPerformances[exercise.id];
+
+                      return ExerciseExecutionCard(
+                        exerciseName: exercise.name,
+                        initialWeight: lastPerf?.weight,
+                        initialReps: lastPerf?.reps,
+                        onSetCompleted: (weight, reps) {
+                          _workoutStore.registerSet(
+                            exerciseId: exercise.id!,
+                            weight: weight,
+                            reps: reps,
+                          );
+                          _timerStore.startOrResetTimer();
+                        },
                       );
-                      // Inicia ou Reseta o Cronômetro
-                      _timerStore.startOrResetTimer();
                     },
                   );
-                },
+                }
               ),
             ),
             Container(
@@ -107,7 +116,7 @@ class _ActiveWorkoutPageState extends State<ActiveWorkoutPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Text('Cronômetro', style: BordoTypography.bodySecondary),
+                      const Text('Descanso / Execução', style: BordoTypography.bodySecondary),
                       ScopedBuilder<TimerStore, int>(
                         store: _timerStore,
                         onState: (_, time) {
@@ -140,11 +149,15 @@ class _ActiveWorkoutPageState extends State<ActiveWorkoutPage> {
 
 class ExerciseExecutionCard extends StatefulWidget {
   final String exerciseName;
+  final double? initialWeight;
+  final int? initialReps;
   final Function(double, int) onSetCompleted;
 
   const ExerciseExecutionCard({
     super.key,
     required this.exerciseName,
+    this.initialWeight,
+    this.initialReps,
     required this.onSetCompleted,
   });
 
@@ -152,28 +165,53 @@ class ExerciseExecutionCard extends StatefulWidget {
   State<ExerciseExecutionCard> createState() => _ExerciseExecutionCardState();
 }
 
-class _ExerciseExecutionCardState extends State<ExerciseExecutionCard> {
-  final _weightCtrl = TextEditingController();
-  final _repsCtrl = TextEditingController();
-  bool _isCompleted = false;
+class _SetData {
+  final TextEditingController weightCtrl;
+  final TextEditingController repsCtrl;
+  bool isCompleted;
 
-  void _completeSet() {
-    final weight = double.tryParse(_weightCtrl.text) ?? 0.0;
-    final reps = int.tryParse(_repsCtrl.text) ?? 0;
+  _SetData({required this.weightCtrl, required this.repsCtrl, this.isCompleted = false});
+}
+
+class _ExerciseExecutionCardState extends State<ExerciseExecutionCard> {
+  final List<_SetData> _sets = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _addNewSetRow(
+      weight: widget.initialWeight,
+      reps: widget.initialReps,
+    );
+  }
+
+  void _addNewSetRow({double? weight, int? reps}) {
+    final wCtrl = TextEditingController(text: weight != null && weight > 0 ? weight.toStringAsFixed(1).replaceAll('.0', '') : '');
+    final rCtrl = TextEditingController(text: reps != null && reps > 0 ? reps.toString() : '');
+    _sets.add(_SetData(weightCtrl: wCtrl, repsCtrl: rCtrl));
+  }
+
+  void _completeSet(int index) {
+    final setData = _sets[index];
+    final w = double.tryParse(setData.weightCtrl.text) ?? 0.0;
+    final r = int.tryParse(setData.repsCtrl.text) ?? 0;
     
-    if (weight > 0 && reps > 0) {
-      setState(() => _isCompleted = true);
-      widget.onSetCompleted(weight, reps);
+    if (w > 0 && r > 0) {
+      setState(() {
+        setData.isCompleted = true;
+        _addNewSetRow(weight: w, reps: r);
+      });
+      widget.onSetCompleted(w, r);
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: _isCompleted ? BordoColors.primary.withOpacity(0.2) : BordoColors.surface,
+      color: BordoColors.surface,
       margin: const EdgeInsets.only(bottom: 16),
       shape: RoundedRectangleBorder(
-        side: BorderSide(color: _isCompleted ? BordoColors.accent : BordoColors.primary.withOpacity(0.3)),
+        side: BorderSide(color: BordoColors.primary.withOpacity(0.3)),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Padding(
@@ -183,22 +221,34 @@ class _ExerciseExecutionCardState extends State<ExerciseExecutionCard> {
           children: [
             Text(widget.exerciseName, style: BordoTypography.title),
             const SizedBox(height: 16),
-            Row(
-              children: [
-                BruteInput(controller: _weightCtrl, label: 'kg'),
-                const SizedBox(width: 16),
-                BruteInput(controller: _repsCtrl, label: 'reps'),
-                const Spacer(),
-                IconButton(
-                  icon: Icon(
-                    Icons.check_circle,
-                    color: _isCompleted ? BordoColors.accent : BordoColors.textSecondary,
-                    size: 40,
-                  ),
-                  onPressed: _isCompleted ? null : _completeSet,
-                )
-              ],
-            )
+            ...List.generate(_sets.length, (index) {
+              final setData = _sets[index];
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 12.0),
+                child: Row(
+                  children: [
+                    Container(
+                      width: 24,
+                      alignment: Alignment.center,
+                      child: Text('${index + 1}', style: BordoTypography.bodySecondary.copyWith(fontWeight: FontWeight.bold)),
+                    ),
+                    const SizedBox(width: 8),
+                    BruteInput(controller: setData.weightCtrl, label: 'kg', readOnly: setData.isCompleted),
+                    const SizedBox(width: 16),
+                    BruteInput(controller: setData.repsCtrl, label: 'reps', readOnly: setData.isCompleted),
+                    const Spacer(),
+                    IconButton(
+                      icon: Icon(
+                        Icons.check_circle,
+                        color: setData.isCompleted ? BordoColors.accent : BordoColors.textSecondary,
+                        size: 32,
+                      ),
+                      onPressed: setData.isCompleted ? null : () => _completeSet(index),
+                    )
+                  ],
+                ),
+              );
+            }),
           ],
         ),
       ),
